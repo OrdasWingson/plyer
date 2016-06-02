@@ -42,9 +42,11 @@ namespace MassEffectPlyer
 
         private double saveSoudValue = 0.0; //уровень звук
         private bool trackBarMouseIsClik = false; //логическая переменная для перетаскивания ползунка прокрутки
-        private delegate void addDelegate(); // делегат для работы с ListBoxMusic
-        private MainWindow.addDelegate addListBoxDelegate; // делегат для работы с ListBoxMusic
-        
+
+        //для сервера
+        private delegate void addDelegate(); // делегат для работы с ListBoxMusic 
+        private addDelegate addListBoxDelegate; // делегат для работы с ListBoxMusic
+
 
         public MainWindow()
         {
@@ -142,6 +144,8 @@ namespace MassEffectPlyer
                 IsBackground = true
             }.Start();
             playFunction(0);
+            MemoryXML mem = new MemoryXML();
+            mem.ShowTracks();
         }
 
         //функция перетаскивания окна с помощью мыши
@@ -295,7 +299,7 @@ namespace MassEffectPlyer
                     TrackListClass.trackList.Add(str2);
                     socket2.Shutdown(SocketShutdown.Both);
                     socket2.Close();
-                    Application.Current.Dispatcher.Invoke((Delegate)this.addListBoxDelegate);
+                    Application.Current.Dispatcher.Invoke(addListBoxDelegate);
                 }
             }
             catch (Exception ex)

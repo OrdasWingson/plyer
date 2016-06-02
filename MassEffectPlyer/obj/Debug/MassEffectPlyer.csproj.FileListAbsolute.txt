@@ -18,3 +18,17 @@ C:\Users\Иван\Documents\Visual Studio 2015\Projects\MassEffectPlyer\MassEffe
 C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\bin\Debug\MassEffectPlyer.exe.config
 C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\MassEffectPlyer.exe
 C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\MassEffectPlyer.pdb
+C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\bin\Debug\MassEffectPlyer.exe
+C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\bin\Debug\MassEffectPlyer.pdb
+C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\MassEffectPlyer.csprojResolveAssemblyReference.cache
+C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\ViewWindow.baml
+C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\MainWindow.g.cs
+C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\ViewWindow.g.cs
+C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\App.g.cs
+C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\MassEffectPlyer_MarkupCompile.cache
+C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\MassEffectPlyer_MarkupCompile.lref
+C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\App.baml
+C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\MainWindow.baml
+C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\MassEffectPlyer.g.resources
+C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\MassEffectPlyer.Properties.Resources.resources
+C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\MassEffectPlyer.csproj.GenerateResource.Cache

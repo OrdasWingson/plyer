@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MemoryXML.cs" />
     <Compile Include="Sounds.cs" />
     <Compile Include="TrackListClass.cs" />
     <Compile Include="ViewWindow.xaml.cs">
