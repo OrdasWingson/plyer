@@ -15,3 +15,6 @@ c:\users\иван\documents\visual studio 2015\Projects\MassEffectPlyer\MassEffe
 c:\users\иван\documents\visual studio 2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\App.baml
 C:\Users\Иван\Documents\Visual Studio 2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\ViewWindow.g.cs
 C:\Users\Иван\Documents\Visual Studio 2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\ViewWindow.baml
+C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\bin\Debug\MassEffectPlyer.exe.config
+C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\MassEffectPlyer.exe
+C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\MassEffectPlyer.pdb
