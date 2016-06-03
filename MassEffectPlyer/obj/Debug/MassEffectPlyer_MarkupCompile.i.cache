@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\App.xaml
-2-1142373793
+3-1058096108
 
-13364488151
+14-685800762
 14-1778951423
-MainWindow.xaml;ViewWindow.xaml;
+MainWindow.xaml;SettingWindow.xaml;ViewWindow.xaml;
 
-False
+True
 

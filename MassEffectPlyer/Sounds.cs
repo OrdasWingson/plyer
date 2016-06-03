@@ -16,5 +16,7 @@ namespace MassEffectPlyer
             Sounds.clickSound.Open(new Uri(AppDomain.CurrentDomain.BaseDirectory + "music\\buttClick.mp3"));
             Sounds.clickSound.Play();
         }
+
+        
     }
 }

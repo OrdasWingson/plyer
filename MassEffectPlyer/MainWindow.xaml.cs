@@ -236,7 +236,7 @@ namespace MassEffectPlyer
                 timer.Start();
                 media.Play();
                 mediaState = MediaState.Play;
-                HZButn.Content = (object)"ПАУЗА";
+                ViewButn.Content = (object)"II";
                 lbi = (ListBoxItem)this.ListBoxMusic.ItemContainerGenerator.ContainerFromIndex(indexTrack);
                 lbi.FontWeight = FontWeights.ExtraBold;
                 lbi.FontSize = 14.0;
@@ -263,7 +263,7 @@ namespace MassEffectPlyer
         //метод события при щелчке на ползунке слайдера прокрутки аудиотрека
         private void trackBar_MouseClick(object sender, MouseButtonEventArgs e)
         {
-
+            trackBarMouseIsClik = true;
         }
 
         //метод события при отпускании левой кнопки мыши при перетаскивании ползунка
@@ -326,9 +326,30 @@ namespace MassEffectPlyer
         //обработка событиц кнопки старт(нажатие на кнопку)
         private void StartButn_Click(object sender, RoutedEventArgs e)
         {
-            Sounds.clikSoundField();
-            trackNumber = this.ListBoxMusic.SelectedIndex;
-            playFunction(this.ListBoxMusic.SelectedIndex);
+            if (mediaState != MediaState.Play && mediaState != MediaState.Pause)
+            {
+                Sounds.clikSoundField();
+                trackNumber = this.ListBoxMusic.SelectedIndex;
+                playFunction(this.ListBoxMusic.SelectedIndex);
+                
+            }
+            else
+            {
+                if (this.mediaState == MediaState.Play)
+                {
+                    this.media.Pause();
+                    ViewButn.Content = (object)"►";
+                    this.mediaState = MediaState.Pause;
+                    this.videoPlayer.Source = new Uri(this.videoPathList[0]);
+                }
+                else if (this.mediaState == MediaState.Pause)
+                {
+                    this.media.Play();
+                    ViewButn.Content = (object)"II";
+                    this.mediaState = MediaState.Play;
+                    this.startVideoDance();
+                }
+            }
         }
 
         #region методы работы с забрасывание музыки
@@ -479,5 +500,16 @@ namespace MassEffectPlyer
                 return;
             this.playFunction(0);
         }
+
+        //кнопка запуска меню
+        private void setting_Click(object sender, RoutedEventArgs e)
+        {
+            Sounds.clikSoundField();
+            SettingWindow setting = new SettingWindow(this.Top, this.Left);
+            setting.Owner = this;
+            setting.ShowDialog();
+        }
+
+        
     }
 }

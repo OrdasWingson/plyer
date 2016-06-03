@@ -132,10 +132,10 @@
                   Height="129" Margin="-141,257,0,0" VerticalAlignment="Top" Width="120" Visibility="Hidden" MediaOpened="mediaOpened"/>
 
         <Button x:Name="HZButn" Content="ПАУЗА" HorizontalAlignment="Left" Height="23"
-            Margin="410,484,0,0" VerticalAlignment="Top" Width="116" BorderThickness="0,0"
+            Margin="521,484,0,0" VerticalAlignment="Top" Width="116" BorderThickness="0,0"
             Style="{DynamicResource DefaultButtonStyle}" Click="PauseButtn_Click">
             <Control.Background>
-                <ImageBrush ImageSource="image/butn3.png"/>
+                <ImageBrush ImageSource="image/butn1.png"/>
             </Control.Background>
         </Button>
 
@@ -167,9 +167,9 @@
         <TextBlock x:Name="mediaTimer" HorizontalAlignment="Left" Height="20" Margin="322,484,0,0" TextWrapping="Wrap"
                VerticalAlignment="Top" Width="30" Foreground="#A3E3FE"/>
 
-        <Button x:Name="ViewButn" Content="СТАРТ" HorizontalAlignment="Left" Height="23"
+        <Button x:Name="ViewButn" Content="►" HorizontalAlignment="Left" Height="23"
             Margin="175,423,0,0" VerticalAlignment="Top" Width="113" BorderThickness="0,0"
-            Style="{DynamicResource DefaultButtonStyle}" Click="StartButn_Click">
+            Style="{DynamicResource DefaultButtonStyle}" Click="StartButn_Click" FontSize="18">
             <Control.Background>
                 <ImageBrush ImageSource="image/butn1.png"/>
             </Control.Background>
@@ -199,11 +199,19 @@
             </Control.Background>
         </Button>
 
-        <Button x:Name="min" Content="" HorizontalAlignment="Left" Height="15"
-            Margin="800,10,0,0" VerticalAlignment="Top" Width="15" RenderTransformOrigin="0.53,0.485"
-            Style="{DynamicResource DefaultButtonStyle}" ToolTip="Свернуть" Click="min_Click">
+        <Button x:Name="min" Content="" HorizontalAlignment="Left" Height="18"
+            Margin="798,5,0,0" VerticalAlignment="Top" Width="17" RenderTransformOrigin="0.53,0.485"
+            Style="{DynamicResource DefaultButtonStyle}" ToolTip="Свернуть" Click="min_Click" BorderThickness="0,0">
             <Control.Background>
                 <ImageBrush ImageSource="image/min.png"/>
+            </Control.Background>
+        </Button>
+
+        <Button x:Name="setting" Content="" HorizontalAlignment="Left" Height="18"
+            Margin="773,5,0,0" VerticalAlignment="Top" Width="18" RenderTransformOrigin="0.53,0.485"
+            Style="{DynamicResource DefaultButtonStyle}" ToolTip="Настройки" BorderThickness="0,0" Click="setting_Click">
+            <Control.Background>
+                <ImageBrush ImageSource="image/setting.png"/>
             </Control.Background>
         </Button>
 
@@ -224,15 +232,27 @@
         </Button>
 
         <Button x:Name="Start_Buttn" Content="ОБЗОР" HorizontalAlignment="Left" Height="23"
-            Margin="528,484,0,0" VerticalAlignment="Top" Width="109" BorderThickness="0,0"
+            Margin="410,484,0,0" VerticalAlignment="Top" Width="109" BorderThickness="0,0"
             Style="{DynamicResource DefaultButtonStyle}" Click="ViewButtn_Click">
             <Control.Background>
-                <ImageBrush ImageSource="image/butn1.png"/>
+                <ImageBrush ImageSource="image/butn3.png"/>
             </Control.Background>
         </Button>
 
-        <TextBlock x:Name="infoTextBloc" HorizontalAlignment="Left" Height="116" Margin="458,277,0,0"
+        <TextBlock x:Name="infoTextBloc" HorizontalAlignment="Left" Height="89" Margin="458,277,0,0"
                TextWrapping="Wrap" VerticalAlignment="Top" Width="272" Foreground="#A3E3FE"/>
+
+
+        <Menu x:Name="menu" HorizontalAlignment="Left" Height="20" Margin="10,10,0,0" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.485,0.643" Background="#000F172E" Foreground="#FFA3E3FE" BorderBrush="Black">
+            <MenuItem Header="File" Foreground="#FFA3E3FE">
+                <MenuItem Header="New" Height="14"></MenuItem>
+                <MenuItem Header="Open" Height="14"></MenuItem>
+                <MenuItem Header="Save" Height="14"></MenuItem>
+                <MenuItem Header="SaveAs..." Height="14"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Exit" Height="14"></MenuItem>
+            </MenuItem>
+        </Menu>
 
     </Grid>
 </Window>
