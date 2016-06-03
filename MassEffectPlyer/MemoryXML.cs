@@ -19,7 +19,7 @@ namespace MassEffectPlyer
             xDoc.Load(pathXML);
         }
 
-
+        //функция выводящая сообщения о содержимом xml
         public void ShowTracks()
         {
             XmlElement xRootElem = xDoc.DocumentElement;
@@ -28,10 +28,39 @@ namespace MassEffectPlyer
             {
                 MessageBox.Show(xNode.InnerText);
             }
-            //foreach(XmlNode xNode in xRootElem)
-            //{
+            
+        }
 
-            //}
+        //возвращает треки
+        public List<string> GetTracksFromXML()
+        {
+            List<string> tracks = new List<string>();
+            XmlElement xRoot = xDoc.DocumentElement;
+
+            foreach(XmlNode xNode in xRoot.ChildNodes)
+            {
+                tracks.Add(xNode.InnerText);
+            }
+            return tracks;
+        }
+
+
+        //сохраняет треки
+        public void SaveTracksToXML(List<string> tracks)
+        {           
+            XmlNode node = xDoc.DocumentElement;
+            node.RemoveAll();
+
+            foreach (var track in tracks)
+            {
+
+                XmlNode xmlSave = xDoc.CreateElement("track");
+                xmlSave.InnerText = track;
+                node.AppendChild(xmlSave);
+
+            }
+            
+            xDoc.Save(pathXML);
         }
     }
 }

@@ -139,13 +139,18 @@ namespace MassEffectPlyer
         //событие запуска окна
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            new Thread(new ThreadStart(this.serverArgs))
-            {
-                IsBackground = true
-            }.Start();
-            playFunction(0);
+            //new Thread(new ThreadStart(this.serverArgs))
+            //{
+            //    IsBackground = true
+            //}.Start();
+            //playFunction(0);
             MemoryXML mem = new MemoryXML();
-            mem.ShowTracks();
+
+            if (mem.GetTracksFromXML() != null)
+            {
+                TrackListClass.trackList = mem.GetTracksFromXML();
+                addToLisBoxMusic();
+            }
         }
 
         //функция перетаскивания окна с помощью мыши
@@ -165,7 +170,10 @@ namespace MassEffectPlyer
         //нажатие кнопки Закрыть
         private void Close_Buttn_Click(object sender, RoutedEventArgs e)
         {
+            MemoryXML mem = new MemoryXML();
+            mem.SaveTracksToXML(TrackListClass.trackList);
             Sounds.clikSoundField();
+            
             this.media.Stop();
             this.videoPlayer.Source = new Uri(this.videoPathList[0]);
             this.warn.Open(new Uri(AppDomain.CurrentDomain.BaseDirectory + "music\\Exit.wav"));
