@@ -30,6 +30,8 @@ namespace MassEffectPlyer
             InitializeComponent();
             mainTop = x;
             mainLeft = y;
+            checkBoxButtSound.IsChecked = Sounds.soundOnOff;
+            checkBoxSaveTrackList.IsChecked = MainWindow.saveTrack;
 
         }
 
@@ -43,11 +45,7 @@ namespace MassEffectPlyer
         //передвижение окна
         private void Drag_SettingWindow(object sender, MouseButtonEventArgs e)
         {
-            
-            DragMove();
-            this.Owner.Top = this.Top - 57;
-            this.Owner.Left = this.Left;
-
+            DragMove();           
         }
 
         //событие выхода из меню настроек
@@ -55,6 +53,44 @@ namespace MassEffectPlyer
         {
             Sounds.clikSoundField();
             this.Close();
+        }
+
+        //изменение положения окна
+        private void settingWindow_LocationChanged(object sender, EventArgs e)
+        {
+
+            this.Owner.Top = this.Top - 57;
+            this.Owner.Left = this.Left;
+            
+        }
+
+              
+        //выбор включон ли звукжжж
+        private void checkBoxButtSound_Click(object sender, RoutedEventArgs e)
+        {
+            if (checkBoxButtSound.IsChecked == true)
+            {
+                Sounds.setVolume(1.0);
+                Sounds.soundOnOff = true;
+            }
+            else
+            {
+                Sounds.setVolume(0.0);
+                Sounds.soundOnOff = false;
+            }
+        }
+
+        //сохронять или нет треки после выключения
+        private void checkBoxSaveTrackList_Click(object sender, RoutedEventArgs e)
+        {
+            if(checkBoxSaveTrackList.IsChecked == true)
+            {
+                MainWindow.saveTrack = true;
+            }
+            else
+            {
+                MainWindow.saveTrack = false;
+            }
         }
     }
 }

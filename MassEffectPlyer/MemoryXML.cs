@@ -13,10 +13,12 @@ namespace MassEffectPlyer
     {
         XmlDocument xDoc = new XmlDocument();
         string pathXML = AppDomain.CurrentDomain.BaseDirectory + "data\\TracksStartLoading.xml";
+       
 
         public MemoryXML()
         {
             xDoc.Load(pathXML);
+            
         }
 
         //функция выводящая сообщения о содержимом xml

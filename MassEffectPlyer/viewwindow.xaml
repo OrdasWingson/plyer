@@ -31,7 +31,7 @@
              BorderThickness="0,0" Foreground="#4FABDC"/>
         <ListView PreviewMouseDoubleClick="listview_previewDoublClik" x:Name="listView1" HorizontalAlignment="Left"
               Height="237" Margin="53,61,0,0" VerticalAlignment="Top" Width="535" Background="#0A0A14"
-              BorderThickness="0,0" Foreground="#4FABDC" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+              BorderThickness="0,0" Foreground="#4FABDC" ScrollViewer.HorizontalScrollBarVisibility="Hidden" FontSize="14">
             <FrameworkElement.Resources>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="Control.Template">

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MassEffectPlyer"
         mc:Ignorable="d"
-        Title="SettingWindow" Height="455" Width="430" WindowStyle="None" AllowsTransparency="true" MouseLeftButtonDown="Drag_SettingWindow">
+        Title="SettingWindow" Height="455" Width="430" WindowStyle="None" AllowsTransparency="true" MouseLeftButtonDown="Drag_SettingWindow" LocationChanged="settingWindow_LocationChanged">
     <Control.Background>
         <ImageBrush ImageSource="Image/dialogw.png"/>
     </Control.Background>
@@ -15,7 +15,9 @@
                 <ImageBrush ImageSource="image/viewbtn.png"></ImageBrush>
             </Control.Background>
         </Button>
-        <Slider x:Name="slider" HorizontalAlignment="Left" Height="21" Margin="231,76,0,0" VerticalAlignment="Top" Width="165"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="21" Margin="73,76,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="143"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="32" Margin="138,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" Foreground="#FFA3E3FE" LineHeight="16"><Run Text="Звук"/><Run Text=" нажатия клавишь"/></TextBlock>
+        <CheckBox x:Name="checkBoxSaveTrackList" Content="CheckBox" HorizontalAlignment="Left" Height="16" Margin="301,141,0,0" VerticalAlignment="Top" Width="15" Click="checkBoxSaveTrackList_Click"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="39" Margin="138,131,0,0" TextWrapping="Wrap" Text="Сохранить треклист при закрытии программы" VerticalAlignment="Top" Width="143" Foreground="#FFA3E3FE"/>
+        <CheckBox x:Name="checkBoxButtSound" Content="CheckBox" HorizontalAlignment="Left" Height="19" Margin="301,83,0,0" VerticalAlignment="Top" Width="15" Click="checkBoxButtSound_Click"/>
     </Grid>
 </Window>

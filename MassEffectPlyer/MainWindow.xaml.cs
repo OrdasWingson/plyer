@@ -33,6 +33,7 @@ namespace MassEffectPlyer
         private ListBoxItem lbi = new ListBoxItem(); //переменная для работы с пунктами listbox
         private List<string> videoPathList = new List<string>(); //контейнер адресов видеотреков 
         public DispatcherTimer timer = new DispatcherTimer(); //таймер, не помню для чего
+        public static bool saveTrack; //сохранение треков
         
         //иконки разного состаяния звука
         private ImageBrush soundFull = new ImageBrush();
@@ -46,15 +47,21 @@ namespace MassEffectPlyer
         //для сервера
         private delegate void addDelegate(); // делегат для работы с ListBoxMusic 
         private addDelegate addListBoxDelegate; // делегат для работы с ListBoxMusic
-
+        
 
         public MainWindow()
         {
             InitializeComponent();
+            Sounds.clickSound.Volume = 1.0; //громкость нажатия клавишь          
+            warn.Volume = 1.0; //громкость предупреждений
             TrackListClass.currentPath = "C:\\Users\\" + Environment.UserName + "\\Music"; //автоматический адрес при старте
             sliderVolume.Maximum = 1.0; //устанавливает максимальное значение слайдера прокрутки звука
             sliderVolume.Value = 0.5; //устанавливает значение при запуске
             media.Volume = this.sliderVolume.Value; //громкость звука аудиотреков
+
+            //работа с инициализацией
+            MainWindow.saveTrack = true; //сохранять треки при выключении
+            Sounds.soundOnOff = true; //звук включен
 
             //переменные иконки звука
             soundFull.ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/soundfull.png"));
@@ -144,13 +151,15 @@ namespace MassEffectPlyer
             //    IsBackground = true
             //}.Start();
             //playFunction(0);
+            inicialisationFile();
             MemoryXML mem = new MemoryXML();
 
-            if (mem.GetTracksFromXML() != null)
+            if (mem.GetTracksFromXML() != null && MainWindow.saveTrack)
             {
                 TrackListClass.trackList = mem.GetTracksFromXML();
                 addToLisBoxMusic();
             }
+            
         }
 
         //функция перетаскивания окна с помощью мыши
@@ -170,8 +179,12 @@ namespace MassEffectPlyer
         //нажатие кнопки Закрыть
         private void Close_Buttn_Click(object sender, RoutedEventArgs e)
         {
-            MemoryXML mem = new MemoryXML();
-            mem.SaveTracksToXML(TrackListClass.trackList);
+            saveInitFile();
+            if (MainWindow.saveTrack)
+            {
+                MemoryXML mem = new MemoryXML();
+                mem.SaveTracksToXML(TrackListClass.trackList);
+            }
             Sounds.clikSoundField();
             
             this.media.Stop();
@@ -508,6 +521,33 @@ namespace MassEffectPlyer
             SettingWindow setting = new SettingWindow(this.Top, this.Left);
             setting.Owner = this;
             setting.ShowDialog();
+        }
+
+        //загружает данные из файла
+        private void inicialisationFile()
+        {
+            string[] iniString = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + "data\\MEP.ini");
+            
+            string saveTrack = iniString[0].Split('=')[1];
+            string sound = iniString[1].Split('=')[1];
+            string path = iniString[2].Split('=')[1];
+            if(!Directory.Exists(path) || path == null)
+            {
+                path = TrackListClass.currentPath;
+            }
+            else
+            {
+                TrackListClass.currentPath = path;
+            }
+            MainWindow.saveTrack = Boolean.Parse(saveTrack);
+            Sounds.soundOnOff = Boolean.Parse(sound);
+        }
+
+        //записывает данные в фаил
+        private void saveInitFile()
+        {
+            string[] iniString = { "Save=" + MainWindow.saveTrack.ToString(), "Sound=" + Sounds.soundOnOff.ToString(), "Path=" + TrackListClass.currentPath };
+            File.WriteAllLines(AppDomain.CurrentDomain.BaseDirectory + "data\\MEP.ini", iniString);
         }
 
         

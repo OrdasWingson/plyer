@@ -27,11 +27,13 @@ namespace MassEffectPlyer
             this.showInsideFolder();
         }
 
+        //кнопка закрыть
         private void close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        //добавить в треклист
         private void addInTrackList_Click(object sender, RoutedEventArgs e)
         {
             Sounds.clikSoundField();
@@ -47,6 +49,7 @@ namespace MassEffectPlyer
             }
         }
 
+        //показать внутри папки
         private void showInsideFolder()
         {
             string currentPath = TrackListClass.currentPath;
@@ -72,6 +75,7 @@ namespace MassEffectPlyer
             }
         }
 
+        //нажатие кнопки при выборе пути
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key != Key.Return)
@@ -84,6 +88,7 @@ namespace MassEffectPlyer
             this.DragMove();
         }
 
+        //движение назад
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             Sounds.clikSoundField();
@@ -99,9 +104,9 @@ namespace MassEffectPlyer
             else
             {
                 int startIndex = currentPath.LastIndexOf('\\');
-                TrackListClass.currentPath = (string)null;
+                TrackListClass.currentPath = null;
                 TrackListClass.currentPath = currentPath.Remove(startIndex);
-                TrackListClass.currentPath += (string)(object)'\\';
+                TrackListClass.currentPath += '\\';
                 this.TextBox1.Text = TrackListClass.currentPath;
                 this.showInsideFolder();
             }
@@ -116,6 +121,7 @@ namespace MassEffectPlyer
             }
         }
 
+        //кнопка вперед
         private void forwardButton_Click(object sender, RoutedEventArgs e)
         {
             Sounds.clikSoundField();
