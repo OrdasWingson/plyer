@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/setting.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/authorize.png")]
 
 

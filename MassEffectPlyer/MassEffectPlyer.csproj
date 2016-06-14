@@ -59,6 +59,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Authorize.xaml.cs">
+      <DependentUpon>Authorize.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MemoryXML.cs" />
     <Compile Include="SettingWindow.xaml.cs">
       <DependentUpon>SettingWindow.xaml</DependentUpon>
@@ -68,6 +71,10 @@
     <Compile Include="ViewWindow.xaml.cs">
       <DependentUpon>ViewWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Authorize.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -108,7 +115,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
@@ -146,6 +153,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\authorize.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

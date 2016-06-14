@@ -333,7 +333,7 @@ namespace MassEffectPlyer
         private void startVideoDance()
         {
             videoPlayer.Source = new Uri(this.videoPathList[1]);
-            videoPlayer.Position = TimeSpan.FromSeconds((double)new Random().Next(220));
+            videoPlayer.Position = TimeSpan.FromSeconds((double)new Random().Next(380));
         }
 
         //обработка событиц кнопки старт(нажатие на кнопку)
@@ -366,34 +366,32 @@ namespace MassEffectPlyer
         }
 
         #region методы работы с забрасывание музыки
-        private void mainWindow_PreviewDragEnter(object sender, DragEventArgs e)
-        {
-            bool flag = true;
-            if (e.Data.GetDataPresent(DataFormats.FileDrop, true))
-            {
-                foreach (string str in (string[])e.Data.GetData(DataFormats.FileDrop, true))
-                {
-                    if (!System.IO.File.Exists(str))
-                    {
-                        flag = false;
-                        break;
-                    }
-                    FileInfo fileInfo = new FileInfo(str);
-                    if (fileInfo.Extension != ".mp3" && fileInfo.Extension != ".MP3" && fileInfo.Extension != ".wma" && fileInfo.Extension != ".WMA")
-                    {
-                        flag = false;
-                        break;
-                    }
-                }
-            }
-            e.Effects = !flag ? DragDropEffects.None : DragDropEffects.All;
-            e.Handled = true;
-        }
 
         private void mainWindow_PreviewDrop(object sender, DragEventArgs e)
         {
             foreach (string str in (string[])e.Data.GetData(DataFormats.FileDrop, true))
-                TrackListClass.trackList.Add(str);
+            {
+                if(File.Exists(str))
+                {
+                    FileInfo fileInfo = new FileInfo(str);
+
+                    if (fileInfo.Extension == ".mp3" || fileInfo.Extension == ".MP3" || fileInfo.Extension == ".wma" || fileInfo.Extension == ".WMA")
+                    {
+                        TrackListClass.trackList.Add(str);
+                    }
+                }
+
+                if(Directory.Exists(str))
+                {
+                    string[] mp3ins = Directory.GetFileSystemEntries(str, "*.mp3");                  
+                    foreach (var mp3 in mp3ins)
+                    {                      
+                        TrackListClass.trackList.Add(mp3);
+                    }
+                }
+                    
+                
+            }
             this.addToLisBoxMusic();
         }
         #endregion
@@ -459,7 +457,6 @@ namespace MassEffectPlyer
         {
             this.media.Stop();
             this.mediaState = MediaState.Stop;
-            this.HZButn.Content = (object)"ПАУЗА";
             TrackListClass.trackList.Clear();
             this.ListBoxMusic.Items.Clear();
             this.media.Source = (Uri)null;
@@ -479,7 +476,7 @@ namespace MassEffectPlyer
                 {
                     this.media.Stop();
                     this.mediaState = MediaState.Stop;
-                    this.HZButn.Content = (object)"ПАУЗА";
+                    
                     this.videoPlayer.Source = new Uri(this.videoPathList[0]);
                     //this.messageDonat(false);
                 }
@@ -520,6 +517,7 @@ namespace MassEffectPlyer
             Sounds.clikSoundField();
             SettingWindow setting = new SettingWindow(this.Top, this.Left);
             setting.Owner = this;
+            
             setting.ShowDialog();
         }
 
@@ -541,6 +539,12 @@ namespace MassEffectPlyer
             }
             MainWindow.saveTrack = Boolean.Parse(saveTrack);
             Sounds.soundOnOff = Boolean.Parse(sound);
+
+            if (Sounds.soundOnOff)
+                Sounds.setVolume(1.0);
+            else
+                Sounds.setVolume(0.0);
+           
         }
 
         //записывает данные в фаил
@@ -550,6 +554,33 @@ namespace MassEffectPlyer
             File.WriteAllLines(AppDomain.CurrentDomain.BaseDirectory + "data\\MEP.ini", iniString);
         }
 
-        
+        //запуск окна авторизации
+        private void VKButn_Click(object sender, RoutedEventArgs e)
+        {
+            Authorize autorize = new Authorize();
+            autorize.Show();
+            autorize.Closed += Autorize_Closed;
+            
+        }
+
+        //закрытие окна авторизации
+        private void Autorize_Closed(object sender, EventArgs e)
+        {
+            WebResponse response = WebRequest.Create("https://api.vk.com/method/audio.get?owner_id=" + VKUserInfo.id + "&access_token=" + VKUserInfo.token).GetResponse();
+            StreamReader streamReader = new StreamReader(response.GetResponseStream());
+            string end = streamReader.ReadToEnd();
+            streamReader.Close();
+            response.Close();
+            MessageBox.Show(end);
+        }
+    }
+
+
+    //класс жля хранения информации о пользователе
+    static class VKUserInfo
+    {
+        public static string token { get; set; }
+        public static string id { get; set; }
+        public static bool auth { get; set; }
     }
 }

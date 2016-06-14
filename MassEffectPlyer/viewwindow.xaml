@@ -1,7 +1,7 @@
 ﻿<Window x:Class="MassEffectPlyer.ViewWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        MouseLeftButtonDown="customWindow_MouseLeftButtonDown" Height="450" Width="625" WindowStyle="None"
+        MouseLeftButtonDown="customWindow_MouseLeftButtonDown" Height="500" Width="675" WindowStyle="None"
         AllowsTransparency="true">
     <Control.Background>
         <ImageBrush ImageSource="image/comp.png"/>
@@ -11,27 +11,27 @@
             <Setter Property="UIElement.Visibility" Value="Hidden"/>
         </Style>
     </FrameworkElement.Resources>
-    <Grid>
+    <Grid RenderTransformOrigin="0.482,0.384">
         <Button Click="addInTrackList_Click" Name="button1" Content="Добавить в треклист" Height="31"
-            HorizontalAlignment="Right" Margin="0,320,322,0" VerticalAlignment="Top" Width="237"
+            HorizontalAlignment="Right" Margin="0,356,348,0" VerticalAlignment="Top" Width="254"
             BorderThickness="0,0" Style="{DynamicResource DefaultButtonStyle}">
             <Control.Background>
                 <ImageBrush ImageSource="image/ViewBTN.png"/>
             </Control.Background>
         </Button>
         <Button Click="close_Click" Name="button2" Content="Готово" Height="31" HorizontalAlignment="Left"
-            Margin="342,320,0,0" VerticalAlignment="Top" Width="233" BorderThickness="0,0"
+            Margin="369,356,0,0" VerticalAlignment="Top" Width="255" BorderThickness="0,0"
             Style="{DynamicResource DefaultButtonStyle}">
             <Control.Background>
                 <ImageBrush ImageSource="image/ViewBTN.png"/>
             </Control.Background>
         </Button>
-        <TextBox KeyDown="textBox1_KeyDown" x:Name="TextBox1" HorizontalAlignment="Left" Height="36"
-             Margin="76,395,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="499" Background="#0A0A14"
-             BorderThickness="0,0" Foreground="#4FABDC"/>
+        <TextBox KeyDown="textBox1_KeyDown" x:Name="TextBox1" HorizontalAlignment="Left" Height="39"
+             Margin="149,444,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="468" Background="#0A0A14"
+             BorderThickness="0,0" Foreground="#4FABDC" FontSize="18"/>
         <ListView PreviewMouseDoubleClick="listview_previewDoublClik" x:Name="listView1" HorizontalAlignment="Left"
-              Height="237" Margin="53,61,0,0" VerticalAlignment="Top" Width="535" Background="#0A0A14"
-              BorderThickness="0,0" Foreground="#4FABDC" ScrollViewer.HorizontalScrollBarVisibility="Hidden" FontSize="14">
+              Height="265" Margin="61,67,0,0" VerticalAlignment="Top" Width="575" Background="#0A0A14"
+              BorderThickness="0,0" Foreground="#4FABDC" ScrollViewer.HorizontalScrollBarVisibility="Hidden" FontSize="18" >
             <FrameworkElement.Resources>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="Control.Template">
@@ -92,18 +92,19 @@
             <Image Name="iconMp3" Source="image/mp3.png" Width="25" Visibility="Collapsed"/>
         </StackPanel>
         <Button Click="backButton_Click" x:Name="backButton" Content="← Назад" HorizontalAlignment="Left"
-            Margin="54,7,0,0" VerticalAlignment="Top" Width="117" Height="37"
+            Margin="61,6,0,0" VerticalAlignment="Top" Width="126" Height="41"
             Style="{DynamicResource DefaultButtonStyle}" BorderThickness="0" FontSize="14">
             <Control.Background>
                 <ImageBrush ImageSource="image/butnBack.png"/>
             </Control.Background>
         </Button>
         <Button Click="forwardButton_Click" x:Name="forwardButton" Content="Вперед →" HorizontalAlignment="Left"
-            Height="37" Margin="170,7,0,0" VerticalAlignment="Top" Width="103"
+            Height="41" Margin="187,6,0,0" VerticalAlignment="Top" Width="109"
             Style="{DynamicResource DefaultButtonStyle}" BorderThickness="0" FontSize="14">
             <Control.Background>
                 <ImageBrush ImageSource="image/butnForward.png"/>
             </Control.Background>
         </Button>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Height="26" Margin="73,444,0,0" VerticalAlignment="Top" Width="38" Foreground="#FFA3E3FE" BorderBrush="#00ACACAC" Background="#FF0A0A14"/>
     </Grid>
 </Window>

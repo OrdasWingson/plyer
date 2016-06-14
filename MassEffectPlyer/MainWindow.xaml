@@ -111,7 +111,7 @@
         </Style>
     </FrameworkElement.Resources>
 
-    <Grid x:Name="mainWindow" PreviewDragEnter="mainWindow_PreviewDragEnter" PreviewDrop="mainWindow_PreviewDrop" PreviewDragOver="mainWindow_PreviewDragEnter" AllowDrop="true" KeyDown="windowForm_KeyDown">
+    <Grid x:Name="mainWindow" PreviewDrop="mainWindow_PreviewDrop" AllowDrop="true" KeyDown="windowForm_KeyDown">
 
         <ListBox MouseDoubleClick="clickMouse" x:Name="ListBoxMusic" HorizontalAlignment="Left" Height="285"
              Margin="58,132,0,0" VerticalAlignment="Top" Width="350" Background="#050816" Foreground="#A3E3FE"
@@ -131,9 +131,9 @@
         <MediaElement x:Name="media" LoadedBehavior="Manual" HorizontalAlignment="Left"
                   Height="129" Margin="-141,257,0,0" VerticalAlignment="Top" Width="120" Visibility="Hidden" MediaOpened="mediaOpened"/>
 
-        <Button x:Name="HZButn" Content="ПАУЗА" HorizontalAlignment="Left" Height="23"
+        <Button x:Name="VKButn" Content="Мои аудио ВК" HorizontalAlignment="Left" Height="23"
             Margin="521,484,0,0" VerticalAlignment="Top" Width="116" BorderThickness="0,0"
-            Style="{DynamicResource DefaultButtonStyle}" Click="PauseButtn_Click">
+            Style="{DynamicResource DefaultButtonStyle}" Click="VKButn_Click">
             <Control.Background>
                 <ImageBrush ImageSource="image/butn1.png"/>
             </Control.Background>

@@ -32,7 +32,7 @@ namespace MassEffectPlyer
             mainLeft = y;
             checkBoxButtSound.IsChecked = Sounds.soundOnOff;
             checkBoxSaveTrackList.IsChecked = MainWindow.saveTrack;
-
+            
         }
 
         //расположение  окна
