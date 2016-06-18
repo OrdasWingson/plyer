@@ -19,6 +19,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Windows.Controls.Primitives;
 using System.IO;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace MassEffectPlyer
 {
@@ -34,6 +36,8 @@ namespace MassEffectPlyer
         private List<string> videoPathList = new List<string>(); //контейнер адресов видеотреков 
         public DispatcherTimer timer = new DispatcherTimer(); //таймер, не помню для чего
         public static bool saveTrack; //сохранение треков
+        public List<Audio> audioInfo = new List<Audio>();//для аудиотреков вк
+        private bool vkStatus = false;//для адиотреков вк
         
         //иконки разного состаяния звука
         private ImageBrush soundFull = new ImageBrush();
@@ -215,8 +219,11 @@ namespace MassEffectPlyer
         {
             this.trackBar.Maximum = this.media.NaturalDuration.TimeSpan.TotalSeconds;
             this.startVideoDance();
-            TagLib.File file = TagLib.File.Create(this.media.Source.LocalPath);
-            infoTextBloc.Text = "Название песни: " + file.Tag.Title + "\nИсполнитель: " + string.Join(", ", file.Tag.Performers) + "\nВремя трека: " + file.Properties.Duration.ToString("mm\\:ss");
+            if (!vkStatus)
+            {
+                TagLib.File file = TagLib.File.Create(this.media.Source.LocalPath);
+                infoTextBloc.Text = "Название песни: " + file.Tag.Title + "\nИсполнитель: " + string.Join(", ", file.Tag.Performers) + "\nВремя трека: " + file.Properties.Duration.ToString("mm\\:ss");
+            }
         }
 
 
@@ -250,7 +257,7 @@ namespace MassEffectPlyer
                 media.Play();
                 mediaState = MediaState.Play;
                 ViewButn.Content = (object)"II";
-                lbi = (ListBoxItem)this.ListBoxMusic.ItemContainerGenerator.ContainerFromIndex(indexTrack);
+                lbi = (ListBoxItem)ListBoxMusic.ItemContainerGenerator.ContainerFromIndex(indexTrack);
                 lbi.FontWeight = FontWeights.ExtraBold;
                 lbi.FontSize = 14.0;
                 //this.messageDonat(true);
@@ -566,12 +573,29 @@ namespace MassEffectPlyer
         //закрытие окна авторизации
         private void Autorize_Closed(object sender, EventArgs e)
         {
+            vkStatus = true;
             WebResponse response = WebRequest.Create("https://api.vk.com/method/audio.get?owner_id=" + VKUserInfo.id + "&access_token=" + VKUserInfo.token).GetResponse();
             StreamReader streamReader = new StreamReader(response.GetResponseStream());
             string end = streamReader.ReadToEnd();
             streamReader.Close();
-            response.Close();
-            MessageBox.Show(end);
+            response.Close();          
+            audioInfo = JToken.Parse(System.Web.HttpUtility.HtmlDecode(end))["response"].Children().Skip(1).Select(c => c.ToObject<Audio>()).ToList();
+
+            MemoryXML mem = new MemoryXML();
+            mem.SaveTracksToXML(TrackListClass.trackList);
+            TrackListClass.trackList.Clear();
+            ListBoxMusic.Items.Clear();
+
+            for(var i = 0; i < audioInfo.Count; i++)
+            {
+                TrackListClass.trackList.Add(audioInfo[i].url);
+                ListBoxMusic.Items.Add(audioInfo[i].artist + "-" + audioInfo[i].title);
+            }
+
+
+            //StreamWriter sss = new StreamWriter(@"C:\Users\Иван\Desktop\txt.txt");
+            //sss.Write(end);
+            //MessageBox.Show(audioInfo[0].url);
         }
     }
 
@@ -582,5 +606,25 @@ namespace MassEffectPlyer
         public static string token { get; set; }
         public static string id { get; set; }
         public static bool auth { get; set; }
+    }
+
+    //класс для работы с вк аудио
+    public class Audio
+    {
+        public int aid { get; set; }
+
+        public int owner_id { get; set; }
+
+        public string artist { get; set; }
+
+        public string title { get; set; }
+
+        public int duration { get; set; }
+
+        public string url { get; set; }
+
+        public string lurlcs_id { get; set; }
+
+        public int genre { get; set; }
     }
 }

@@ -241,18 +241,7 @@
 
         <TextBlock x:Name="infoTextBloc" HorizontalAlignment="Left" Height="89" Margin="458,277,0,0"
                TextWrapping="Wrap" VerticalAlignment="Top" Width="272" Foreground="#A3E3FE"/>
-
-
-        <Menu x:Name="menu" HorizontalAlignment="Left" Height="20" Margin="10,10,0,0" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.485,0.643" Background="#000F172E" Foreground="#FFA3E3FE" BorderBrush="Black">
-            <MenuItem Header="File" Foreground="#FFA3E3FE">
-                <MenuItem Header="New" Height="14"></MenuItem>
-                <MenuItem Header="Open" Height="14"></MenuItem>
-                <MenuItem Header="Save" Height="14"></MenuItem>
-                <MenuItem Header="SaveAs..." Height="14"></MenuItem>
-                <Separator></Separator>
-                <MenuItem Header="Exit" Height="14"></MenuItem>
-            </MenuItem>
-        </Menu>
+      
 
     </Grid>
 </Window>

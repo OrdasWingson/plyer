@@ -36,3 +36,4 @@ C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffe
 C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\SettingWindow.baml
 C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\Authorize.g.cs
 C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\obj\Debug\Authorize.baml
+C:\Users\Иван\Documents\Visual_Studio_2015\Projects\MassEffectPlyer\MassEffectPlyer\bin\Debug\Newtonsoft.Json.dll
