@@ -24,7 +24,7 @@ namespace MassEffectPlyer
         {
             InitializeComponent();
             webBrowser1.LoadCompleted += WebBrowser1_LoadCompleted;
-            webBrowser1.Navigate("https://oauth.vk.com/authorize?client_id=5231153&display=popup&redirect_uri=https://oauth.vk.com/blank.html&scope=audio&response_type=token&v=5.44");
+            webBrowser1.Navigate("https://oauth.vk.com/authorize?client_id=5231153&display=popup&redirect_uri=https://oauth.vk.com/blank.html&scope=audio&response_type=token&v=5.52");
         }
 
         private void WebBrowser1_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
@@ -32,15 +32,17 @@ namespace MassEffectPlyer
             try
             {
                 strAdr = webBrowser1.Source.AbsoluteUri.ToString().Split('#')[1];
-                //if (strAdr.Length != 97)
-                //{
-                //    MessageBox.Show(strAdr.Length.ToString() + " !!! " + strAdr);
-                //    return;
-                //}
+                if (strAdr == null)
+                {
+                    MessageBox.Show(strAdr.Length.ToString() + " !!! " + strAdr);
+                    return;
+                }
                 VKUserInfo.id = strAdr.Split('=')[3];
                 VKUserInfo.token = strAdr.Split('&')[0].Split('=')[1];
                 VKUserInfo.auth = true;
-                MessageBox.Show(strAdr + "  --  " + VKUserInfo.id + "  -2-  " + VKUserInfo.token);
+                webBrowser1.Visibility = Visibility.Hidden;
+                this.Close();
+                //MessageBox.Show(strAdr + "  --  " + VKUserInfo.id + "  -2-  " + VKUserInfo.token);
             }
             catch
             {
@@ -50,7 +52,7 @@ namespace MassEffectPlyer
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(strAdr + "  --  " + VKUserInfo.id + "  -2-  " + VKUserInfo.token);
+            //MessageBox.Show(strAdr + "  --  " + VKUserInfo.id + "  -2-  " + VKUserInfo.token);
             this.Close();
         }
 

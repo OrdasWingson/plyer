@@ -65,5 +65,21 @@ namespace MassEffectPlyer
                 trackList[index2] = str;
             }
         }
+
+        public static void mixerFunc<type>(List<type> arrList)
+        {
+            if (arrList == null)
+                return;
+            Random random = new Random();
+            for (int index1 = 0; index1 < arrList.Count; ++index1)
+            {
+                int index2 = random.Next(trackList.Count);
+                var str = arrList[index1];
+                arrList[index1] = arrList[index2];
+                arrList[index2] = str;
+            }
+        }
+
+        
     }
 }

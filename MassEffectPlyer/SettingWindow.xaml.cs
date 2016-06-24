@@ -8,9 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Forms;
 
 namespace MassEffectPlyer
 {
@@ -23,6 +21,7 @@ namespace MassEffectPlyer
         double mainTop;
         double mainLeft;
        
+       
 
 
         public SettingWindow(double x, double y)
@@ -32,7 +31,9 @@ namespace MassEffectPlyer
             mainLeft = y;
             checkBoxButtSound.IsChecked = Sounds.soundOnOff;
             checkBoxSaveTrackList.IsChecked = MainWindow.saveTrack;
-            
+            pathBox.Text = MainWindow.vkPathSave;
+
+
         }
 
         //расположение  окна
@@ -91,6 +92,20 @@ namespace MassEffectPlyer
             {
                 MainWindow.saveTrack = false;
             }
+        }
+
+        //кнопка обзора файлов
+        private void dirButt_Click(object sender, RoutedEventArgs e)
+        {
+            Sounds.clikSoundField();
+            FolderBrowserDialog FBD = new FolderBrowserDialog();          
+            DialogResult DR = FBD.ShowDialog();
+            if(DR == System.Windows.Forms.DialogResult.OK)
+            {
+                pathBox.Text = MainWindow.vkPathSave = FBD.SelectedPath;
+                
+            }
+
         }
     }
 }

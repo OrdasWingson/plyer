@@ -10,7 +10,15 @@
         <ImageBrush ImageSource="Image/authorize.png"/>
     </Control.Background>
     <Grid>
-        <WebBrowser x:Name="webBrowser1" HorizontalAlignment="Left" Height="206" Margin="366,78,0,0" VerticalAlignment="Top" Width="354" RenderTransformOrigin="0.5,0.5">
+        <WebBrowser x:Name="webBrowser1" HorizontalAlignment="Left" Height="212" Margin="144,46,0,0" VerticalAlignment="Top" Width="524" RenderTransformOrigin="0.508,0.495">
+            <WebBrowser.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.036"/>
+                    <TranslateTransform Y="0.004"/>
+                </TransformGroup>
+            </WebBrowser.RenderTransform>
             <UIElement.Clip>
                 <GeometryGroup FillRule="Nonzero">
                     <RectangleGeometry Rect="-59,85,190,150">
@@ -21,7 +29,7 @@
                 </GeometryGroup>
             </UIElement.Clip>
         </WebBrowser>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Height="26" Margin="10,10,0,0" VerticalAlignment="Top" Width="33" Click="button_Click"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Height="26" Margin="749,10,0,0" VerticalAlignment="Top" Width="33" Click="button_Click"/>
 
     </Grid>
 </Window>
