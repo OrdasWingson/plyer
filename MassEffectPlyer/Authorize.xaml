@@ -10,7 +10,7 @@
         <ImageBrush ImageSource="Image/authorize.png"/>
     </Control.Background>
     <Grid>
-        <WebBrowser x:Name="webBrowser1" HorizontalAlignment="Left" Height="212" Margin="144,46,0,0" VerticalAlignment="Top" Width="524" RenderTransformOrigin="0.508,0.495">
+        <WebBrowser x:Name="webBrowser1" HorizontalAlignment="Left" Height="282" Margin="140,58,0,0" VerticalAlignment="Top" Width="524" RenderTransformOrigin="0.508,0.495">
             <WebBrowser.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -30,6 +30,7 @@
             </UIElement.Clip>
         </WebBrowser>
         <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Height="26" Margin="749,10,0,0" VerticalAlignment="Top" Width="33" Click="button_Click"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="100" Margin="226,96,0,0" TextWrapping="Wrap" Text="ИДЕТ ПОДКЛЮЧЕНИЕ С ЦИТАДЕЛЬЮ. ЭТО МОЖЕТ ЗАНЯТЬ НЕСКОЛЬКО СЕКУНД." VerticalAlignment="Top" Width="382" FontSize="24" Foreground="#FFEDF370"/>
 
     </Grid>
 </Window>

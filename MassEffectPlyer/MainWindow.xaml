@@ -115,7 +115,7 @@
 
         <ListBox MouseDoubleClick="clickMouse" x:Name="ListBoxMusic" HorizontalAlignment="Left" Height="285"
              Margin="58,132,0,0" VerticalAlignment="Top" Width="350" Background="#050816" Foreground="#A3E3FE"
-             ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemContainerStyle="{StaticResource SimpleListBoxItem}"/>
+             ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemContainerStyle="{StaticResource SimpleListBoxItem}" KeyDown="ListBoxMusic_keyDown" />
 
         <Button x:Name="Close_Buttn" Content="ЗАКРЫТЬ" HorizontalAlignment="Left"
             Height="23" Margin="640,484,0,0" VerticalAlignment="Top" Width="116" BorderThickness="0,0"

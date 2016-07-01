@@ -39,6 +39,7 @@ namespace MassEffectPlyer
         public List<Audio> audioInfo = new List<Audio>();//для аудиотреков вк
         private bool vkStatus = false;//для адиотреков вк
         public static string vkPathSave;//директория для сохранения песен
+        private bool isConnect = false;
         
         
         //иконки разного состаяния звука
@@ -87,6 +88,7 @@ namespace MassEffectPlyer
             media.MediaEnded += new RoutedEventHandler(media_MediaEnded);//событие окончания аудио
             videoPlayer.Source = new Uri(this.videoPathList[0]);//загрузка в видиоплеер пути к видеофайла
             videoPlayer.MediaEnded += new RoutedEventHandler(videoPlayer_MediaEnded);//событие окночания видео
+            
         }
 
         //событие окончания видео
@@ -382,7 +384,7 @@ namespace MassEffectPlyer
             }
         }
 
-        #region методы работы с забрасывание музыки
+#region методы работы с забрасывание музыки***********************************************************
 
         private void mainWindow_PreviewDrop(object sender, DragEventArgs e)
         {
@@ -496,13 +498,7 @@ namespace MassEffectPlyer
         {
             if (!vkStatus)
             {
-                this.media.Stop();
-                this.mediaState = MediaState.Stop;
-                TrackListClass.trackList.Clear();
-                this.ListBoxMusic.Items.Clear();
-                this.media.Source = (Uri)null;
-                this.videoPlayer.Source = new Uri(this.videoPathList[0]);
-                this.infoTextBloc.Text = "";
+                ClearMethod();
             }
             else
             {
@@ -516,6 +512,18 @@ namespace MassEffectPlyer
 
                 }
             }
+        }
+
+        //метод очистки
+        private void ClearMethod()
+        {
+            this.media.Stop();
+            this.mediaState = MediaState.Stop;
+            TrackListClass.trackList.Clear();
+            this.ListBoxMusic.Items.Clear();
+            this.media.Source = (Uri)null;
+            this.videoPlayer.Source = new Uri(this.videoPathList[0]);
+            this.infoTextBloc.Text = "";
         }
 
         //перехват нажатия кнопки основным 
@@ -614,20 +622,23 @@ namespace MassEffectPlyer
         {
             if (vkStatus == false)
             {
+                
                 Authorize autorize = new Authorize();
                 autorize.Show();
                 autorize.Closed += Autorize_Closed;
+                //Autorize_Closed();
                 Start_Buttn.Visibility = Visibility.Hidden;
                 ImageBrush butnChange = new ImageBrush();
                 butnChange.ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/butn3.png"));
-                VKButn.Background = butnChange;
+                VKButn.Background = butnChange;                
                 ListBoxMusic.Items.Clear();
-                ListBoxMusic.Items.Add("Идет загрузка треков...");
+                if (isConnect) ListBoxMusic.Items.Add("Идет загрузка треков...");
                 VKButn.Content = "МОИ АУДИО";
                 clearButn.Content = "Сохранить песню";
             }
             else
             {
+                ClearMethod();
                 MemoryXML mem = new MemoryXML();
                 if (mem.GetTracksFromXML() != null && MainWindow.saveTrack)
                 {
@@ -647,7 +658,7 @@ namespace MassEffectPlyer
         }
 
         //закрытие окна авторизации
-        private void Autorize_Closed(object sender, EventArgs e)
+        private void Autorize_Closed(object sender, EventArgs e)//object sender, EventArgs e
         {
             vkStatus = true;           
 
@@ -656,18 +667,25 @@ namespace MassEffectPlyer
             string end = streamReader.ReadToEnd();
             streamReader.Close();
             response.Close();
-            audioInfo = JToken.Parse(System.Web.HttpUtility.HtmlDecode(end))["response"].Children().Skip(1).Select(c => c.ToObject<Audio>()).ToList();
-            
             saveMethodToXML();
-            TrackListClass.trackList.Clear();
-            ListBoxMusic.Items.Clear();
 
-            for (var i = 0; i < audioInfo.Count; i++)
+            ClearMethod();
+
+            try
             {
-                TrackListClass.trackList.Add(audioInfo[i].url);
-                ListBoxMusic.Items.Add(audioInfo[i].artist + "-" + audioInfo[i].title);
+                audioInfo = JToken.Parse(System.Web.HttpUtility.HtmlDecode(end))["response"].Children().Skip(1).Select(c => c.ToObject<Audio>()).ToList();
+                for (var i = 0; i < audioInfo.Count; i++)
+                {
+                    TrackListClass.trackList.Add(audioInfo[i].url);
+                    ListBoxMusic.Items.Add(audioInfo[i].artist + "-" + audioInfo[i].title);
+                }
+                isConnect = true;
             }
-
+            catch
+            {
+                ListBoxMusic.Items.Add("Ошибка подключения к серверу.");
+                isConnect = false;
+            }
 
         }
 
@@ -676,6 +694,22 @@ namespace MassEffectPlyer
         {
             MemoryXML mem = new MemoryXML();
             mem.SaveTracksToXML(TrackListClass.trackList);
+        }
+
+        //перемещение элементов cпомощью клавиш
+        private void ListBoxMusic_keyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.LeftCtrl)
+            {
+                if (e.Key == Key.Up)
+                {
+                    var trac = TrackListClass.trackList[ListBoxMusic.SelectedIndex];
+                    TrackListClass.trackList[ListBoxMusic.SelectedIndex] = TrackListClass.trackList[ListBoxMusic.SelectedIndex - 1];
+                    TrackListClass.trackList[ListBoxMusic.SelectedIndex - 1] = trac;
+                    ListBoxMusic.Items.Clear();
+                    addToLisBoxMusic();
+                }
+            }
         }
     }
 
