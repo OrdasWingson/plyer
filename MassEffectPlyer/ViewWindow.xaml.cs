@@ -25,6 +25,8 @@ namespace MassEffectPlyer
             this.TextBox1.Text = TrackListClass.currentPath;
             this.saveDeepDirectory = TrackListClass.currentPath;
             this.showInsideFolder();
+            foreach(var driver in DriveInfo.GetDrives())
+                comboBox.Items.Add(driver);
         }
 
         //кнопка закрыть
@@ -179,7 +181,14 @@ namespace MassEffectPlyer
             }
         }
 
-
+        //выбор диска в комбобокс
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TrackListClass.currentPath = comboBox.SelectedItem.ToString();
+            this.TextBox1.Text = saveDeepDirectory = TrackListClass.currentPath;
+            listView1.Items.Clear();
+            showInsideFolder();
+        }
 
         public class FileInFolder
         {
@@ -194,6 +203,6 @@ namespace MassEffectPlyer
             }
         }
 
-
+        
     }
 }

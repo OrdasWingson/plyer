@@ -10,6 +10,8 @@
         <Style x:Key="LVStyle" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="UIElement.Visibility" Value="Hidden"/>
         </Style>
+
+
     </FrameworkElement.Resources>
     <Grid RenderTransformOrigin="0.482,0.384">
         <Button Click="addInTrackList_Click" Name="button1" Content="Добавить в треклист" Height="31"
@@ -73,6 +75,8 @@
                         </Trigger>
                     </Style.Triggers>
                 </Style>
+
+
             </FrameworkElement.Resources>
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource LVStyle}">
@@ -105,6 +109,8 @@
                 <ImageBrush ImageSource="image/butnForward.png"/>
             </Control.Background>
         </Button>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Height="26" Margin="73,444,0,0" VerticalAlignment="Top" Width="38" Foreground="#FFA3E3FE" BorderBrush="#00ACACAC" Background="#FF0A0A14"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Height="26" Margin="73,444,0,0" VerticalAlignment="Top" Width="46" Style="{DynamicResource ComboBoxTest2}" Foreground="#FF4FABDC" FontSize="18" FontWeight="Bold" SelectionChanged="comboBox_SelectionChanged">
+
+        </ComboBox>
     </Grid>
 </Window>

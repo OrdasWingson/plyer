@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace MassEffectPlyer
 {
@@ -107,5 +108,18 @@ namespace MassEffectPlyer
             }
 
         }
+        //обработка нажатия кнопки пожертвования
+        private void donat_Click(object sender, RoutedEventArgs e)
+        {
+            Sounds.clikSoundField();
+            Process.Start("https://money.yandex.ru/to/410014092038574");
+        }
+
+        private void buttonMyVK_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://vk.com/id197553220");
+        }
+
+        
     }
 }

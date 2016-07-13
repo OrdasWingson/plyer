@@ -57,7 +57,7 @@ namespace MassEffectPlyer
                 textBlock.Text = "Добро пожаловать на борт "+ usName + " Шепaрд";
                 
                 this.Close();
-                //MessageBox.Show(strAdr + "  --  " + VKUserInfo.id + "  -2-  " + VKUserInfo.token);
+                
             }
             catch
             {

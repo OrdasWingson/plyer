@@ -180,9 +180,16 @@ namespace MassEffectPlyer
         //Щелчек по пункту ListView
         private void clickMouse(object sender, MouseButtonEventArgs e)
         {
-            textOptionsListBox();
-            trackNumber = ListBoxMusic.SelectedIndex;
-            playFunction(this.ListBoxMusic.SelectedIndex);
+            for (DependencyObject reference = (DependencyObject)e.OriginalSource; reference != null && reference != ListBoxMusic; reference = VisualTreeHelper.GetParent(reference))
+            {
+                if (reference.GetType() == typeof(ListBoxItem))
+                {
+                    textOptionsListBox();
+                    trackNumber = ListBoxMusic.SelectedIndex;
+                    playFunction(this.ListBoxMusic.SelectedIndex);
+                    break;
+                }
+            }
         }
 
         //нажатие кнопки Закрыть
@@ -480,7 +487,25 @@ namespace MassEffectPlyer
             }
             else
             {
+                int currentTrackID = audioInfo[trackNumber].aid;
                 TrackListClass.mixerFunc<Audio>(audioInfo);
+
+                if (this.mediaState == MediaState.Play || this.mediaState == MediaState.Pause)
+                {
+                    for (int i = 0; i < audioInfo.Count; i++)
+                    {
+                        if (audioInfo[i].aid == currentTrackID)
+                        {
+                            var newVar = audioInfo[0];
+                            audioInfo[0] = audioInfo[i];
+                            audioInfo[i] = newVar;
+                            trackNumber = 0;
+                            break;
+                        }
+                    }
+                }
+                
+                
                 TrackListClass.trackList.Clear();
                 ListBoxMusic.Items.Clear();
 
@@ -489,6 +514,7 @@ namespace MassEffectPlyer
                     TrackListClass.trackList.Add(audioInfo[i].url);
                     ListBoxMusic.Items.Add(audioInfo[i].artist + "-" + audioInfo[i].title);
                 }
+                
             }
 
         }
@@ -624,14 +650,16 @@ namespace MassEffectPlyer
             {
                 
                 Authorize autorize = new Authorize();
+                Visibility = Visibility.Hidden;
                 autorize.Show();
+                
                 autorize.Closed += Autorize_Closed;
                 //Autorize_Closed();
                 Start_Buttn.Visibility = Visibility.Hidden;
                 ImageBrush butnChange = new ImageBrush();
                 butnChange.ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/butn3.png"));
                 VKButn.Background = butnChange;                
-                ListBoxMusic.Items.Clear();
+                ListBoxMusic.Items.Clear();               
                 if (isConnect) ListBoxMusic.Items.Add("Идет загрузка треков...");
                 VKButn.Content = "МОИ АУДИО";
                 clearButn.Content = "Сохранить песню";
@@ -653,15 +681,15 @@ namespace MassEffectPlyer
                 Start_Buttn.Visibility = Visibility.Visible;
                 VKButn.Content = "Мои аудио ВК";
                 clearButn.Content = "Очистить список";
-            }
-            
+            }          
+
         }
 
         //закрытие окна авторизации
         private void Autorize_Closed(object sender, EventArgs e)//object sender, EventArgs e
         {
             vkStatus = true;           
-
+            Visibility = Visibility.Visible;
             WebResponse response = WebRequest.Create("https://api.vk.com/method/audio.get?owner_id=" + VKUserInfo.id + "&access_token=" + VKUserInfo.token).GetResponse();
             StreamReader streamReader = new StreamReader(response.GetResponseStream());
             string end = streamReader.ReadToEnd();
@@ -686,6 +714,7 @@ namespace MassEffectPlyer
                 ListBoxMusic.Items.Add("Ошибка подключения к серверу.");
                 isConnect = false;
             }
+            
 
         }
 
@@ -742,3 +771,6 @@ namespace MassEffectPlyer
         public int genre { get; set; }
     }
 }
+
+
+
