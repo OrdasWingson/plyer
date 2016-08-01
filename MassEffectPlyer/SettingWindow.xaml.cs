@@ -104,7 +104,7 @@ namespace MassEffectPlyer
             if(DR == System.Windows.Forms.DialogResult.OK)
             {
                 pathBox.Text = MainWindow.vkPathSave = FBD.SelectedPath;
-                
+                lengthMethod();
             }
 
         }
@@ -120,6 +120,27 @@ namespace MassEffectPlyer
             Process.Start("https://vk.com/id197553220");
         }
 
-        
+        private void pathBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                MainWindow.vkPathSave = pathBox.Text;
+                lengthMethod();
+            }
+        }
+
+        private void lengthMethod()
+        {
+            if (pathBox.Text.Length > 33)
+            {
+                var str = pathBox.Text;
+                pathBox.Text = "..." + str.Substring(pathBox.Text.Length - 31, 31);
+            }
+        }
+
+        private void vkExit_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("cmd.exe", "/C RunDll32.exe InetCpl.cpl,ClearMyTracksByProcess 255");
+        }
     }
 }

@@ -15,30 +15,35 @@
                 <ImageBrush ImageSource="image/viewbtn.png"></ImageBrush>
             </Control.Background>
         </Button>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="32" Margin="138,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" Foreground="#FFA3E3FE" LineHeight="16"><Run Text="Звук"/><Run Text=" нажатия клавишь"/></TextBlock>
-        <CheckBox x:Name="checkBoxSaveTrackList" Content="CheckBox" HorizontalAlignment="Left" Height="16" Margin="301,141,0,0" VerticalAlignment="Top" Width="15" Click="checkBoxSaveTrackList_Click"/>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="39" Margin="138,131,0,0" TextWrapping="Wrap" Text="Сохранить треклист при закрытии программы" VerticalAlignment="Top" Width="143" Foreground="#FFA3E3FE"/>
-        <CheckBox x:Name="checkBoxButtSound" Content="CheckBox" HorizontalAlignment="Left" Height="19" Margin="301,83,0,0" VerticalAlignment="Top" Width="15" Click="checkBoxButtSound_Click"/>
-        <TextBox x:Name="pathBox" HorizontalAlignment="Left" Height="27" Margin="175,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Background="#00000000" Foreground="#A3E3FE"/>
-        <Button x:Name="dirButt" Content="обзор" HorizontalAlignment="Left" Height="27" Margin="76,221,0,0" VerticalAlignment="Top" Width="94" Style="{DynamicResource DefaultButtonStyle}" BorderThickness="0" Click="dirButt_Click">
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="32" Margin="138,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" Foreground="#FFA3E3FE" LineHeight="16"><Run Text="Звук"/><Run Text=" нажатия клавишь"/></TextBlock>
+        <CheckBox x:Name="checkBoxSaveTrackList" Content="CheckBox" HorizontalAlignment="Left" Height="16" Margin="301,113,0,0" VerticalAlignment="Top" Width="15" Click="checkBoxSaveTrackList_Click"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="39" Margin="138,102,0,0" TextWrapping="Wrap" Text="Сохранить треклист при закрытии программы" VerticalAlignment="Top" Width="143" Foreground="#FFA3E3FE"/>
+        <CheckBox x:Name="checkBoxButtSound" Content="CheckBox" HorizontalAlignment="Left" Height="19" Margin="301,70,0,0" VerticalAlignment="Top" Width="15" Click="checkBoxButtSound_Click"/>
+        <TextBox x:Name="pathBox" HorizontalAlignment="Left" Height="27" Margin="174,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Background="#00000000" Foreground="#A3E3FE" KeyDown="pathBox_KeyDown"/>
+        <Button x:Name="dirButt" Content="обзор" HorizontalAlignment="Left" Height="27" Margin="75,186,0,0" VerticalAlignment="Top" Width="94" Style="{DynamicResource DefaultButtonStyle}" BorderThickness="0" Click="dirButt_Click">
             <Button.Background>
                 <ImageBrush ImageSource="image\butn1.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="buttonMyVK" Content="личным сообщением в ВК" HorizontalAlignment="Left" Height="21" Margin="66,344,0,0" VerticalAlignment="Top" Width="151" Background="#0A0A14"  BorderThickness="0" Click="buttonMyVK_Click" Style="{DynamicResource LinkButtonStyle}" FontSize="11" FontWeight="Bold" ToolTip="Нажать для перехода на страницу ВК"/>
-        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Height="35" Margin="108,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="233" Foreground="#FFA3E3FE"><Run Text="Каталог, где будут сохранят"/><Run Text="ь"/><Run Text="ся треки из "/><Run Text="&quot;"/><Run Text="ВКонтакте"/><Run Text="&quot;:"/></TextBlock>
-        <Button Margin="257,266,0,0"  x:Name="donat" Content="" HorizontalAlignment="Left" 
+        <Button x:Name="buttonMyVK" Content="личным сообщением в ВК" HorizontalAlignment="Left" Height="21" Margin="66,305,0,0" VerticalAlignment="Top" Width="151" Background="#0A0A14"  BorderThickness="0" Click="buttonMyVK_Click" Style="{DynamicResource LinkButtonStyle}" FontSize="11" FontWeight="Bold" ToolTip="Нажать для перехода на страницу ВК"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Height="35" Margin="109,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="233" Foreground="#FFA3E3FE"><Run Text="Каталог, где будут сохранят"/><Run Text="ь"/><Run Text="ся треки из "/><Run Text="&quot;"/><Run Text="ВКонтакте"/><Run Text="&quot;:"/></TextBlock>
+        <Button Margin="257,232,0,0"  x:Name="donat" Content="" HorizontalAlignment="Left" 
             VerticalAlignment="Top" Width="133" Height="42" BorderThickness="0"
             Style="{DynamicResource DefaultButtonStyle}" ToolTip="При нажатии будет открыт сайт Yandex.Деньги" Click="donat_Click">
             <Control.Background>
                 <ImageBrush ImageSource="image/Currency.png"/>
             </Control.Background>
         </Button>
-        <TextBlock x:Name="donatTextBlock" HorizontalAlignment="Left" Height="52" Margin="66,266,0,0" TextWrapping="Wrap" Text="Если вам понравилось это приложение, возможно вы захотите поощрить разработчиков)" VerticalAlignment="Top" Width="191" Foreground="#A3E3FE" FontSize="10"
+        <TextBlock x:Name="donatTextBlock" HorizontalAlignment="Left" Height="52" Margin="66,232,0,0" TextWrapping="Wrap" Text="Если вам понравилось это приложение, возможно вы захотите поощрить разработчиков)" VerticalAlignment="Top" Width="191" Foreground="#A3E3FE" FontSize="10"
                FontFamily="Segoe UI Light" />
         
-        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Height="16" Margin="66,331,0,0" TextWrapping="Wrap" Text="Свои идеи, предложения и пожелания можно оставлять" VerticalAlignment="Top" Width="313" Foreground="#A3E3FE" FontSize="11"/>
-        <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Height="40" Margin="217,347,0,0" TextWrapping="Wrap" Text="или на почту Live4wiN@yandex.ru" VerticalAlignment="Top" Width="188" Foreground="#A3E3FE" FontSize="11" />
+        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Height="16" Margin="66,289,0,0" TextWrapping="Wrap" Text="Свои идеи, предложения и пожелания можно оставлять" VerticalAlignment="Top" Width="313" Foreground="#A3E3FE" FontSize="11"/>
+        <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Height="40" Margin="217,308,0,0" TextWrapping="Wrap" Text="или на почту Live4wiN@yandex.ru" VerticalAlignment="Top" Width="188" Foreground="#A3E3FE" FontSize="11" />
+        <Button x:Name="vkExit" Content="ВЫХОД ИЗ ВК" HorizontalAlignment="Left" Height="33" Margin="153,348,0,0" VerticalAlignment="Top" Width="128" Style="{DynamicResource DefaultButtonStyle}" BorderThickness="0" Click="vkExit_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="image\butn1.png"/>
+            </Button.Background>
+        </Button>
 
     </Grid>
 </Window>

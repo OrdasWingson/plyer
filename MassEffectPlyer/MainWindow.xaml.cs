@@ -40,8 +40,9 @@ namespace MassEffectPlyer
         private bool vkStatus = false;//для адиотреков вк
         public static string vkPathSave;//директория для сохранения песен
         private bool isConnect = false;
-        
-        
+        private string[] prohibitedArr = { "*", "|", "\\", "/", ":", "\"", "?", ">", "<"};
+
+
         //иконки разного состаяния звука
         private ImageBrush soundFull = new ImageBrush();
         private ImageBrush soundMiddle = new ImageBrush();
@@ -464,6 +465,7 @@ namespace MassEffectPlyer
         //кнопка перемешать
         private void mixBtn_Click(object sender, RoutedEventArgs e)
         {
+            Sounds.clikSoundField();
             if (!vkStatus)
             {
                 TrackListClass.mixerFunc();
@@ -522,6 +524,7 @@ namespace MassEffectPlyer
         //событие кнопки очистить
         private void clearButn_Click(object sender, RoutedEventArgs e)
         {
+            Sounds.clikSoundField();
             if (!vkStatus)
             {
                 ClearMethod();
@@ -530,8 +533,28 @@ namespace MassEffectPlyer
             {
                 try
                 {
-                    WebClient web = new WebClient();
-                    web.DownloadFile(TrackListClass.trackList[ListBoxMusic.SelectedIndex], vkPathSave + "\\" + ListBoxMusic.Items[ListBoxMusic.SelectedIndex] + ".mp3");
+                    string selectedTrack = TrackListClass.trackList[ListBoxMusic.SelectedIndex];
+                    string trackFromListBox = (string)ListBoxMusic.Items[ListBoxMusic.SelectedIndex]; //prohibitedArr
+
+                    foreach (var prohibited in prohibitedArr)
+                    {
+                        trackFromListBox = trackFromListBox.Replace(prohibited, " ");
+                    }
+
+
+                    if (!Directory.Exists(vkPathSave))
+                    {
+                        Directory.CreateDirectory(vkPathSave);
+                    }
+
+                    var newThread = new Thread(() => 
+                    {
+                        WebClient web = new WebClient();
+                        web.DownloadFile(selectedTrack, vkPathSave + "\\" + trackFromListBox + ".mp3");
+                    });
+                    newThread.IsBackground = true;
+                    newThread.Start();
+                    
                 }
                 catch
                 {
@@ -646,6 +669,7 @@ namespace MassEffectPlyer
         //запуск окна авторизации
         private void VKButn_Click(object sender, RoutedEventArgs e)
         {
+            Sounds.clikSoundField();
             if (vkStatus == false)
             {
                 

@@ -29,7 +29,7 @@
                 </GeometryGroup>
             </UIElement.Clip>
         </WebBrowser>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Height="26" Margin="749,10,0,0" VerticalAlignment="Top" Width="33" Click="button_Click"/>
+        <Button x:Name="button" Content="ОТМЕНА" HorizontalAlignment="Left" Height="48" Margin="375,360,0,0" VerticalAlignment="Top" Width="297" Click="button_Click" Foreground="#FFEDF370" Background="#01DDDDDD" FontSize="24" Style="{DynamicResource DefaultButtonStyle}"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="100" Margin="226,96,0,0" TextWrapping="Wrap" Text="ИДЕТ ПОДКЛЮЧЕНИЕ С ЦИТАДЕЛЬЮ. ЭТО МОЖЕТ ЗАНЯТЬ НЕСКОЛЬКО СЕКУНД." VerticalAlignment="Top" Width="382" FontSize="24" Foreground="#FFEDF370"/>
 
     </Grid>

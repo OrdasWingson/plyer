@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using System.Net;
 using System.IO;
 using System.Xml;
-using System.Threading;
+using System.Windows.Threading;
 
 namespace MassEffectPlyer
 {
@@ -55,14 +55,22 @@ namespace MassEffectPlyer
                 
                 responsName();
                 textBlock.Text = "Добро пожаловать на борт "+ usName + " Шепaрд";
+                DispatcherTimer dispatcherTimer = new DispatcherTimer();
+                dispatcherTimer.Tick += new EventHandler(dT_Tick);
+                dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 3);
+                dispatcherTimer.Start();
                 
-                this.Close();
                 
             }
             catch
             {
 
             }
+        }
+
+        private void dT_Tick(object sender, EventArgs e)
+        {
+            Close();
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
